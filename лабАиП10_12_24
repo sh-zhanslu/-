@@ -1,0 +1,123 @@
+using System;
+namespace @switch
+{class Car //объявление класса 
+    {
+        public string _marka {  get; set; } //поля
+        public int _year;
+        public string _colour;
+        public string _country;
+
+        public Car (string marka, int year, string colour, string country) //конструктор 
+        {
+            _marka = marka;
+            _year = year;
+            _colour = colour;
+            _country = country;
+        }
+
+        public void  Data()
+        {
+            Console.WriteLine($"Автомобиль: {_marka}, Год выпуска: {_year}, Цвет: {_colour}, Страна: {_country}");
+        }
+    }
+    internal class Program
+    {
+        public static void YearChoice(Car[] cars, int year)
+        {
+            foreach (Car car in cars)
+            {
+                if (car._year == year)
+                {
+                    car.Data();
+                }
+            }
+        }
+        public static void CountryChoice(Car[] cars, string country)
+        {
+            foreach (Car car in cars)
+            {
+                if (car._country == country)
+                {
+                    car.Data();
+                }
+            }
+        }
+        public static void MarkaChoice(Car[] cars, string marka)
+        {
+            foreach (Car car in cars)
+            {
+                if (car._marka == marka)
+                {
+                    car.Data();
+                }
+            }
+        }
+        static void Main()
+        {
+            Console.Write("Введите количество автомобилей: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Car[] cars = new Car[n];
+           
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("1.Создать ");
+                Console.WriteLine("2.Информация об автомобилях");
+                Console.WriteLine("3.Выход");
+                int k = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                if (k == 1)
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        Console.Write("Введите марку: ");
+                        string m = Console.ReadLine();
+                        Console.Write("Введите год: ");
+                        int y = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Введите цвет: ");
+                        string c = Console.ReadLine();
+                        Console.Write("Введите страну: ");
+                        string ct = Console.ReadLine();
+                        cars[i] = new Car(m, y, c, ct);
+
+                    }
+
+
+                }
+                else if (k == 2)
+                {
+                    Console.WriteLine("1.Выборка по году ");
+                    Console.WriteLine("2.Выборка по стране ");
+                    Console.WriteLine("3.Выборка по марке ");
+                    int k2 = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+                    if (k2 == 1)
+                    {
+                        Console.Write("Введите год: ");
+                        int y2 = Convert.ToInt32(Console.ReadLine());
+                        YearChoice(cars, y2);
+                    }
+                    else if (k2 == 2)
+                    {
+                        Console.Write("Введите страну: ");
+                        string ct2 = Console.ReadLine();
+                        CountryChoice(cars, ct2);
+                    }
+                    else if (k2 == 3)
+                    {
+                        Console.Write("Введите марку: ");
+                        string m2 = Console.ReadLine();
+                        MarkaChoice(cars, m2);
+                    }
+                    Console.ReadKey();
+                }
+                else if (k == 3)
+                {
+                    break;
+                }
+
+            }
+           
+        }
+    }
+}

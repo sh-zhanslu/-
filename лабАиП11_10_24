@@ -1,0 +1,41 @@
+using System;
+namespace _11._10._24
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            string[] inputs = { "212", "130", "101", "220"};
+            foreach (string a in inputs)
+            {
+
+                
+           
+                List<char> list = new List<char>();
+                foreach (char c in a)
+                {
+                    if (Convert.ToInt32(c) % 2 != 0)
+                    {
+                        list.Add(c);
+
+                    }
+
+                }
+                if (list.Count == 0) {
+                    Console.WriteLine("Ничего нет");
+                    break;
+                    
+                }
+                
+                for (int i = list.Count - 1; i >= 0; i--)
+                {
+                    Console.Write(list[i]);
+                }
+                Console.WriteLine();
+            }
+            Console.ReadKey();
+
+
+        }
+    }
+}

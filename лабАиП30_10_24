@@ -1,0 +1,82 @@
+using System;
+namespace _30._10._24
+{
+    internal class Program
+    {
+        static int[] Input()
+        {
+            Console.WriteLine("Введите массив через пробел: ");
+            string input = Console.ReadLine();
+            string[] strings = input.Split(' ');
+            int[] result = new int[strings.Length];
+            for (int i = 0; i < strings.Length; i++)
+            {
+                string s = strings[i];
+                int r = Convert.ToInt32(s);
+                result[i] = r;
+            }
+            return result;
+
+
+        }
+        static void Main(string[] args)
+        {
+            int[] inputs = Input();
+           
+            List<int> negative = new List<int>();
+            List<int> zero = new List<int>();
+            List<int> positive = new List<int>();
+
+
+            foreach (int  a in inputs)
+            {
+                
+                if (a > 0)
+                {
+                    positive.Add(a);
+                }
+                else if (a == 0)
+                {
+                    zero.Add(a);
+                }
+                else if (a < 0)
+                {
+                    negative.Add(a);
+                }
+            }
+            List<int> results = new List<int>();
+            results.AddRange(positive);
+            results.AddRange(zero);
+            results.AddRange(negative);
+            Console.WriteLine(string.Join(", ", results));
+
+            inputs = results.ToArray();
+            int prev = inputs[0]; 
+            bool result = true;
+            for ( int i = 1; i<inputs.Length; i++)
+            {
+                 int current = inputs[i];
+                if ( current> prev) {  result = false; break; }
+                prev = current;
+
+            }
+            Console.WriteLine(result);
+            bool flag = true;
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                if (inputs[i] % 2 != 0)
+                {
+                    flag = false;
+                    break;
+
+                }
+            }
+            Console.WriteLine(flag);
+
+                
+
+                 
+
+        }
+    }
+}

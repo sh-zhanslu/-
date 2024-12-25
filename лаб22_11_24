@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _22._11._24
+{
+    internal class Program
+    {
+        public  static int[] Input()
+        {
+            Console.WriteLine("Введите числа: ");
+            string s = Console.ReadLine();
+            string[] c = s.Split(' ');
+            int[] a = Array.ConvertAll(c, int.Parse);
+            return a;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите количество строк: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[][] array = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                array[i] = Input();
+            }
+            Console.Write("1) ");
+            for (int i = 0;i < n; i++) 
+            {
+                int  mx = array[i].Max();
+                if (2 * mx > array[i].Sum())
+                {
+                    Console.Write(i+" ");
+                }
+                 
+            }
+            Console.WriteLine();
+            for (int i = 0; i < n; i++)
+            {
+                bool flag = false;
+                for (int j = 0; j < array[i].Length-1; j++)
+                {
+                    
+                    if (array[i][j + 1] < array[i][j])
+                    {
+                        
+                        flag = true;
+                    }
+                }
+                if (flag)
+                {
+                    Console.WriteLine("В строке есть подпоследовательность");
+                }
+                else
+                {
+                    Console.WriteLine("Не существует");
+                }
+            }
+        }
+    }
+}
